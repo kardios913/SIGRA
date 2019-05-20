@@ -2,10 +2,10 @@
 
 class conexion {
 
-    private $servidor = "localhost"; //"gidis.ufps.edu.co";
-    private $usuario = "root"; //"votacionesufps"
-    private $constrasena = ""; //"votacionesufps"
-    private $bd = "SiEgre"; //"votacionesufps"
+    private $servidor = "localhost"; 
+    private $usuario = "root";
+    private $constrasena = "";
+    private $bd = "SiEgre";
 
 
 
