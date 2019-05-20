@@ -5,7 +5,7 @@
 <section class="content-header">
     <h1>
         <center>
-            Administrador<br>
+            Formulario Progrmas<br>
             <small>Seleccion una Opción</small>
         </center>
     </h1>
@@ -19,12 +19,12 @@
             <div class="small-box bg-red">
                 <div class="inner">
 
-                    <p>Programas</p>
+                    <p>Registrar Programa</p>
                 </div>
                 <div class="icon">
                     <i class="fa fa-university"></i>
                 </div>
-                <a href="FormProgramas.php" class="small-box-footer">Acceder <i class="glyphicon glyphicon-circle-arrow-right"></i></a>
+                <a href="FormRegistrarPrograma.php" class="small-box-footer">Acceder <i class="glyphicon glyphicon-circle-arrow-right"></i></a>
             </div>
         </div>
 
@@ -32,24 +32,12 @@
             <div class="small-box bg-red">
                 <div class="inner">
 
-                    <p>Egresados</p>
+                    <p>Listar Programas</p>
                 </div>
                 <div class="icon">
-                    <i class="fa fa-graduation-cap"></i>
+                    <i class="glyphicon glyphicon-list-alt"></i>
                 </div>
-                <a href="FormEgresado.php" class="small-box-footer">Acceder <i class="glyphicon glyphicon-circle-arrow-right"></i></a>
-            </div>
-        </div>
-        <div class="col-lg-3 col-xs-6">
-            <div class="small-box bg-red">
-                <div class="inner">
-
-                    <p>Encuesta</p>
-                </div>
-                <div class="icon">
-                    <i class="fa fa-edit"></i>
-                </div>
-                <a href="FormEncuesta.php" class="small-box-footer">Acceder <i class="glyphicon glyphicon-circle-arrow-right"></i></a>
+                <a href="FormListarPrograma.php" class="small-box-footer">Acceder <i class="glyphicon glyphicon-circle-arrow-right"></i></a>
             </div>
         </div>
 </section>

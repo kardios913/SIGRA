@@ -3,6 +3,7 @@
 class EgresadoDTO {
 
     private $CodEgresado;
+    private $Contrasena;
     private $Apellido;
     private $Nombre;
     private $CodPrograma;
@@ -20,8 +21,15 @@ class EgresadoDTO {
     function __construct(){
 
     }
-    
-    function getCodEgresado() {
+    function getContrasena() {
+        return $this->Contrasena;
+    }
+
+    function setContrasena($Contrasena) {
+        $this->Contrasena = $Contrasena;
+    }
+
+        function getCodEgresado() {
         return $this->CodEgresado;
     }
 

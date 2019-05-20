@@ -24,28 +24,28 @@
             <ul class="sidebar-menu">
                 <li class="header"><center>Menu del Sistema</center></li>
                 <!-- Optionally, you can add icons to the links -->
-                <li><a href="../index.php" ><i class="glyphicon glyphicon-home"></i><span>Inicio</span></a></li>
-                
+                <li><a href="FormAdmin.php" ><i class="glyphicon glyphicon-home"></i><span>Inicio</span></a></li>
+
                 <li><a href="#" id="btn-1" data-toggle="collapse" data-target="#submenu1" aria-expanded="false">
-                        <i class="glyphicon glyphicon-equalizer"></i> <span>Carreras</span></a>
+                        <i class="fa fa-university"></i> <span>Programas</span></a>
                     <ul class="nav collapse sidebar-menu" id="submenu1" role="menu" aria-labelledby="btn-1">
-                        <li><a href="#"><i class="glyphicon glyphicon-book" ></i> <span>Crear Carreras</span></a></li>
-                        <li><a href="#" ><i class="glyphicon glyphicon-list-alt"></i> <span>Listar Carreras</span></a></li>
+                        <li><a href="FormRegistrarPrograma.php"><i class="fa fa-university" ></i> <span>Registrar Programas</span></a></li>
+                        <li><a href="FormListarPrograma.php" ><i class="glyphicon glyphicon-list-alt"></i> <span>Listar Programas</span></a></li>
                     </ul>
                 </li>
                 <li><a href="#" id="btn-2" data-toggle="collapse" data-target="#submenu2" aria-expanded="false">
-                        <i class="glyphicon glyphicon-shopping-cart"></i><span>Egresados</span></a>
+                        <i class="fa fa-graduation-cap"></i><span>Egresados</span></a>
                     <ul class="nav collapse sidebar-menu" id="submenu2" role="menu" aria-labelledby="btn-2">
-                        <li><a href="#" ><i class="glyphicon glyphicon-shopping-cart"></i> <span>Registrar Egresado</span></a></li>
-                        <li><a href="#" ><i class="glyphicon glyphicon-shopping-cart"></i> <span>Listar Egresado</span></a></li>
+                        <li><a href="FormRegistrarEgresado.php" ><i class="fa fa-user-plus"></i> <span>Registrar Egresado</span></a></li>
+                        <li><a href="FormListarEgresado.php" ><i class="glyphicon glyphicon-list-alt"></i> <span>Listar Egresado</span></a></li>
                     </ul>
                 </li>
                 <li><a href="#" id="btn-3" data-toggle="collapse" data-target="#submenu3" aria-expanded="false">
-                        <i class="glyphicon glyphicon-book"></i> <span>Encuesta</span></a>
+                        <i class="fa fa-edit"></i> <span>Encuesta</span></a>
                     <ul class="nav collapse sidebar-menu" id="submenu3" role="menu" aria-labelledby="btn-3">
-                        <li><a href="#" ><i class="glyphicon glyphicon-book"></i> <span>Crear Encuesta</span></a></li>                          
-                        <li><a href="#"><i class="glyphicon glyphicon-book"></i> <span>Listar Encuesta</span></a></li>
-                        <li><a href="#"><i class="glyphicon glyphicon-book"></i> <span>Resultados Encuesta</span></a></li>
+                        <li><a href="#" ><i class="fa fa-edit"></i> <span>Crear Encuesta</span></a></li>                          
+                        <li><a href="#"><i class="glyphicon glyphicon-list-alt"></i> <span>Listar Encuesta</span></a></li>
+                        <li><a href="#"><i class="fa fa-bar-chart"></i> <span>Resultados Encuesta</span></a></li>
                     </ul>
                 </li>
             </ul>
