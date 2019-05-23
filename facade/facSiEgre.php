@@ -32,6 +32,17 @@ class facSiEgre {
         }
         return self::$_instance;
     }
+     public function datetimeCompleto() {
+        return $this->negSiEgre->datetimeCompleto();
+    }
+
+    public function datetime() {
+        return $this->negSiEgre->datetime();
+    }
+
+    public function date() {
+        return $this->negSiEgre->date();
+    }
     
     public function LoginAdmin($mail,$pass) {
         return $this->negSiEgre->LoginAdmin($mail, $pass);
@@ -66,5 +77,25 @@ class facSiEgre {
     
     public function ListarVerEgresado($codEgresado){
         return $this->negSiEgre->ListarVerEgresado($codEgresado);
+    }
+    
+    public function CrearEncuesta($nomEncuesta,$fCierreEncuesta,$fCreacionEncuesta){
+        return $this->negSiEgre->CrearEncuesta($nomEncuesta,$fCierreEncuesta,$fCreacionEncuesta);
+    }
+    
+    public function ListarEncuesta(){
+        return $this->negSiEgre->ListarEncuesta();
+    }
+    
+    public function isEmptyRespuesta($idEncuesta){
+        return $this->negSiEgre->isEmptyRespuesta();
+    }
+    
+    public function EditarEncuesta($idEncuesta,$nomEncuesta,$fCierreEncuesta){
+        return $this->negSiEgre->EditarEncuesta($idEncuesta,$nomEncuesta,$fCierreEncuesta);
+    }
+    
+    public function EliminarEncuesta($idEncuesta) {
+        return $this->negSiEgre->EliminarEncuesta($idEncuesta);
     }
 }

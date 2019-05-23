@@ -24,7 +24,7 @@
                 <div class="icon">
                     <i class="fa fa-edit"></i>
                 </div>
-                <a href="#" class="small-box-footer">Acceder <i class="glyphicon glyphicon-circle-arrow-right"></i></a>
+                <a href="FormCrearEncuesta.php" class="small-box-footer">Acceder <i class="glyphicon glyphicon-circle-arrow-right"></i></a>
             </div>
         </div>
 
@@ -37,18 +37,7 @@
                 <div class="icon">
                     <i class="glyphicon glyphicon-list-alt"></i>
                 </div>
-                <a href="#" class="small-box-footer">Acceder <i class="glyphicon glyphicon-circle-arrow-right"></i></a>
-            </div>
-        </div>
-        <div class="col-lg-3 col-xs-6">
-            <div class="small-box bg-red">
-                <div class="inner">
-                    <p>Resulatados Encuesta</p>
-                </div>
-                <div class="icon">
-                    <i class="fa fa-bar-chart"></i>
-                </div>
-                <a href="#" class="small-box-footer">Acceder <i class="glyphicon glyphicon-circle-arrow-right"></i></a>
+                <a href="FormListarEncuesta.php" class="small-box-footer">Acceder <i class="glyphicon glyphicon-circle-arrow-right"></i></a>
             </div>
         </div>
 </section>

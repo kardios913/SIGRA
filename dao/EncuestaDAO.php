@@ -9,6 +9,34 @@ class EncuestaDAO {
     function __construct() {
         $this->bd = conexion::getInstance();
     }
+    
+    public function CrearEncuesta(EncuestaDTO $enc){
+        $this->bd->conection();
+        $consulta = "INSERT INTO `encuesta`( `nombre`, `fechaCreacion`, `fechaCierre`) VALUES ('".$enc->getNombre()."','".$enc->getFechaCreacio()."','".$enc->getFechaFin()."');";
+        $result = $this->bd->ejecutarConsultaSQL($consulta);
+        return $result;
+    }
+    
+    public function EditarEncuesta(EncuestaDTO $enc){
+        $this->bd->conection();
+        $consulta = "UPDATE `encuesta` SET `nombre`='".$enc->getNombre()."',`fechaCierre`='".$enc->getFechaFin()."' WHERE `idEncuesta`=".$enc->getIdEncuesta().";";
+        $result = $this->bd->ejecutarConsultaSQL($consulta);
+        return $result;
+    }
+    
+    public function EliminarEncuesta(EncuestaDTO $enc){
+        $this->bd->conection();
+        $consulta = "DELETE FROM `encuesta` WHERE idEncuesta=".$enc->getIdEncuesta().";";
+        $result = $this->bd->ejecutarConsultaSQL($consulta);
+        return $result;
+    }
+    
+    public function ListarEncuesta(){
+        $this->bd->conection();
+        $consulta = "SELECT `idEncuesta`, `nombre`, `fechaCreacion`, `fechaCierre` FROM `encuesta` ;";
+        $result = $this->bd->ejecutarConsultaSQL($consulta);
+        return $result;
+    }
 
     public function getArray($result) {
         return ($this->bd->getArray($result));

@@ -2,7 +2,7 @@
 include_once ('../config/conexion.php');
 include_once ('../dto/RespuestasDTO.php');
 
-class RespuestaDAO {
+class RespuestasDAO {
 
     private $bd;
 
@@ -10,6 +10,13 @@ class RespuestaDAO {
         $this->bd = conexion::getInstance();
     }
 
+    public function isEmptyRespuesta(RespuestasDTO $res){
+        $this->bd->conection();
+        $consulta = "SELECT * FROM `respuesta` WHERE idEncuesta= ".$res->getIdEncuesta().";";
+        $consul = $this->bd->ejecutarConsultaSQL($consulta);
+        $result = $this->bd->getCantidadFilas($consul);
+        return $result;
+    }
     public function getArray($result) {
         return ($this->bd->getArray($result));
     }

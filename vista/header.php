@@ -43,9 +43,8 @@
                 <li><a href="#" id="btn-3" data-toggle="collapse" data-target="#submenu3" aria-expanded="false">
                         <i class="fa fa-edit"></i> <span>Encuesta</span></a>
                     <ul class="nav collapse sidebar-menu" id="submenu3" role="menu" aria-labelledby="btn-3">
-                        <li><a href="#" ><i class="fa fa-edit"></i> <span>Crear Encuesta</span></a></li>                          
-                        <li><a href="#"><i class="glyphicon glyphicon-list-alt"></i> <span>Listar Encuesta</span></a></li>
-                        <li><a href="#"><i class="fa fa-bar-chart"></i> <span>Resultados Encuesta</span></a></li>
+                        <li><a href="FormCrearEncuesta.php" ><i class="fa fa-edit"></i> <span>Crear Encuesta</span></a></li>                          
+                        <li><a href="FormListarEncuesta.php"><i class="glyphicon glyphicon-list-alt"></i> <span>Listar Encuesta</span></a></li>
                     </ul>
                 </li>
             </ul>

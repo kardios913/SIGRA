@@ -70,8 +70,9 @@ class negSiEgre {
         $result = $modao->RegistrarPrograma($modto);
         return $result;
     }
-    
-    /*TABLA PROGRAMA*/
+
+    /* TABLA PROGRAMA */
+
     public function ListarPrograma() {
         $modao = new ProgramaDAO();
         $listado = $modao->ListarPrograma();
@@ -87,9 +88,9 @@ class negSiEgre {
         if ($row = $modao->getArray($listado)) {
             do {
                 $result .= "               <tr>
-                                    <td>".$row['idPrograma']."</td>
-                                    <td>".$row['nomPrograma']."</td>
-                                    <td><a href = './FormEditarPrograma.php?idPrograma=".$row['idPrograma']."&nomPrograma=".$row['nomPrograma']."' class = 'btn btn-info' ><i class = 'glyphicon glyphicon-edit'></i></a></td>";
+                                    <td>" . $row['idPrograma'] . "</td>
+                                    <td>" . $row['nomPrograma'] . "</td>
+                                    <td><a href = './FormEditarPrograma.php?idPrograma=" . $row['idPrograma'] . "&nomPrograma=" . $row['nomPrograma'] . "' class = 'btn btn-info' ><i class = 'glyphicon glyphicon-edit'></i></a></td>";
             } while ($row = $modao->getArray($listado));
             $result .= "          </tbody>
                         </table>";
@@ -99,20 +100,19 @@ class negSiEgre {
             return $result;
         }
     }
-    
-    public function EditarPrograma($codPrograma,$nomPrograma){
+
+    public function EditarPrograma($codPrograma, $nomPrograma) {
         $modto = new ProgramaDTO();
         $modto->setCodPrograma($codPrograma);
         $modto->setNomPrograma($nomPrograma);
         $modao = new ProgramaDAO();
-        $resul= $modao->EditarPrograma($modto);
+        $resul = $modao->EditarPrograma($modto);
         return $resul;
-        
     }
-    
-    /*TABLA EGRESADO*/
-    
-    public function RegistrarEgresado($codEgresado,$nomEgresado,$apeEgresado,$corEgresado,$tipoEgresado,$docEgresado,$proEgresado){
+
+    /* TABLA EGRESADO */
+
+    public function RegistrarEgresado($codEgresado, $nomEgresado, $apeEgresado, $corEgresado, $tipoEgresado, $docEgresado, $proEgresado) {
         $modto = new EgresadoDTO();
         $modto->setCodEgresado($codEgresado);
         $modto->setNombre($nomEgresado);
@@ -125,8 +125,8 @@ class negSiEgre {
         $result = $modao->RegistrarEgresado($modto);
         return $result;
     }
-    
-    public function EditarEgresado($codEgresado, $nomEgresado, $apeEgresado, $corEgresado, $tipoEgresado, $docEgresado, $proEgresado){
+
+    public function EditarEgresado($codEgresado, $nomEgresado, $apeEgresado, $corEgresado, $tipoEgresado, $docEgresado, $proEgresado) {
         $modto = new EgresadoDTO();
         $modto->setCodEgresado($codEgresado);
         $modto->setNombre($nomEgresado);
@@ -139,9 +139,9 @@ class negSiEgre {
         $result = $modao->EditarEgresado($modto);
         return $result;
     }
-    
-    public function ListarEgresado(){
-         $modao = new EgresadoDAO();
+
+    public function ListarEgresado() {
+        $modao = new EgresadoDAO();
         $listado = $modao->ListarEgresado();
         $result = "<table id='mytable' class='table table-bordred table-striped table-responsive'>
                             <thead>
@@ -161,16 +161,16 @@ class negSiEgre {
         if ($row = $modao->getArray($listado)) {
             do {
                 $result .= "    <tr>
-                                    <td>".$row['idEgresado']."</td>
-                                    <td>".$row['nombre']."</td>
-                                    <td>".$row['apellido']."</td>
-                                    <td>".$row['correo']."</td>
-                                    <td>".$row['numDocumento']."</td>
-                                    <td>".$row['idPrograma']."</td>
-                                    <td><a href = './FormEditarEgresado.php?codEgresado=".$row['idEgresado']."&nomEgresado=".$row['nombre']."
-                                        &apeEgresado=".$row['apellido']."&docEgresado=".$row['numDocumento']."&correo=".$row['correo']."
-                                            &idPrograma=".$row['idPrograma']."' class = 'btn btn-info' ><i class = 'glyphicon glyphicon-edit'></i></a></td> 
-                                    <td><a href = './FormVerEgresado.php?codEgresado=".$row['idEgresado']."' class = 'btn btn-warning' ><i class = 'glyphicon glyphicon-eye-open'></i></a></td> ";
+                                    <td>" . $row['idEgresado'] . "</td>
+                                    <td>" . $row['nombre'] . "</td>
+                                    <td>" . $row['apellido'] . "</td>
+                                    <td>" . $row['correo'] . "</td>
+                                    <td>" . $row['numDocumento'] . "</td>
+                                    <td>" . $row['idPrograma'] . "</td>
+                                    <td><a href = './FormEditarEgresado.php?codEgresado=" . $row['idEgresado'] . "&nomEgresado=" . $row['nombre'] . "
+                                        &apeEgresado=" . $row['apellido'] . "&docEgresado=" . $row['numDocumento'] . "&correo=" . $row['correo'] . "
+                                            &idPrograma=" . $row['idPrograma'] . "' class = 'btn btn-info' ><i class = 'glyphicon glyphicon-edit'></i></a></td> 
+                                    <td><a href = './FormVerEgresado.php?codEgresado=" . $row['idEgresado'] . "' class = 'btn btn-warning' ><i class = 'glyphicon glyphicon-eye-open'></i></a></td> ";
             } while ($row = $modao->getArray($listado));
             $result .= "          </tbody>
                         </table>";
@@ -180,76 +180,155 @@ class negSiEgre {
             return $result;
         }
     }
-    
-    public function ListarVerEgresado($codEgresado){
-         $modao = new EgresadoDAO();
+
+    public function ListarVerEgresado($codEgresado) {
+        $modao = new EgresadoDAO();
         $listado = $modao->ListarVerEgresado($codEgresado);
         $result = "<div class='box-body'>";
         if ($row = $modao->getArray($listado)) {
-                $result .= "                         
+            $result .= "                         
                         <div class='col-lg-6 col-xs-'>
                             <div class='form-group'>
                                 <label>Codigo: </label>
-                                <span>".$row['idEgresado']."</span> 
+                                <span>" . $row['idEgresado'] . "</span> 
                             </div> 
                             <div class='form-group'>
                                 <label>Nombre:</label>
-                                <span>".$row['nombre']."</span> 
+                                <span>" . $row['nombre'] . "</span> 
                             </div> 
                             <div class='form-group'>
                                 <label>Apellido:</label>
-                                <span>".$row['apellido']."</span>
+                                <span>" . $row['apellido'] . "</span>
                             </div> 
                             <div class='form-group'>
                                 <label>Correo:</label>
-                                <span>".$row['correo']."</span>
+                                <span>" . $row['correo'] . "</span>
                             </div> 
                             <div class='form-group'>
                                 <label>Documento: </label>
-                                <span>".$row['numDocumento']."</span>
+                                <span>" . $row['numDocumento'] . "</span>
                             </div> 
                             <div class='form-group'>
                                 <label>Telefono:</label>
-                                <span>".$row['telefono']."</span>
+                                <span>" . $row['telefono'] . "</span>
                             </div> 
                         </div>
                         <div class='col-lg-6 col-xs-6'>
                             
                             <div class='form-group'>
                                 <label>Celular:</label>
-                                <span>".$row['celular']."</span>
+                                <span>" . $row['celular'] . "</span>
                             </div> 
                             <div class='form-group'>
                                 <label>Dirección:</label>
-                                <span>".$row['dirResidencia']."</span>
+                                <span>" . $row['dirResidencia'] . "</span>
                             </div> 
                             <div class='form-group'>
                                 <label>Departamento:</label>
-                                <span>".$row['depResidencia']."</span>
+                                <span>" . $row['depResidencia'] . "</span>
                             </div> 
                             <div class='form-group'>
                                 <label>Ciudad: </label>
-                                <span>".$row['ciudResidencia']."</span>
+                                <span>" . $row['ciudResidencia'] . "</span>
                             </div> 
                             <div class='form-group'>
                                 <label>Pais: </label>
-                                <span>".$row['paisResidencia']."</span>
+                                <span>" . $row['paisResidencia'] . "</span>
                             </div> 
                             <div class='form-group'>
                                 <label>Barrio: </label>
-                                <span>".$row['barrioResidencia']."</span>
+                                <span>" . $row['barrioResidencia'] . "</span>
                             </div> 
                         </div>  ";
             $result .= "</div>";
-        return $result;
-        
-        }
-        else {
+            return $result;
+        } else {
             $result .= "No hay Informacion </div>";
             return $result;
         }
     }
-    
-    
+
+    /* TABLA ENCUESTAS */
+
+    public function CrearEncuesta($nomEncuesta, $fCierreEncuesta, $fCreacionEncuesta) {
+        $modto = new EncuestaDTO();
+        $modto->setNombre($nomEncuesta);
+        $modto->setFechaFin($fCierreEncuesta);
+        $modto->setFechaCreacio($fCreacionEncuesta);
+        $modao = new EncuestaDAO();
+        $result = $modao->CrearEncuesta($modto);
+        return $result;
+    }
+
+    public function ListarEncuesta() {
+        $modao = new EncuestaDAO;
+        $listado = $modao->ListarEncuesta();
+        $result = "<table id='mytable' class='table table-bordred table-striped table-responsive'>
+                            <thead>
+                                <tr>
+                                    <th>id</th>
+                                    <th>Nombre</th>
+                                    <th>Creacion</th>
+                                    <th>Cierre</th>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody id='myTable'>";
+        if ($row = $modao->getArray($listado)) {
+            do {
+                $result .= "    <tr>
+                                    <td>" . $row['idEncuesta'] . "</td>
+                                    <td>" . $row['nombre'] . "</td>
+                                    <td>" . $row['fechaCreacion'] . "</td>
+                                    <td>" . $row['fechaCierre'] . "</td>";
+                if ($this->isEmptyRespuesta((int) $row['idEncuesta'])) {
+                    $result .= "<td><a href = './FormShowResult.php?idEncuesta=" . $row['idEncuesta'] . "' class = 'btn btn-success' ><i class = 'fa fa-bar-chart'></i></a></td> "
+                            . "<td><a href = './FormVerEncuesta.php?idEncuesta=" . $row['idEncuesta'] . "' class = 'btn btn-info' ><i class = 'glyphicon glyphicon-eye-open'></i></a></td>";
+                } else {
+                    $result .= "<td><a href = './FormAddPregunta.php?idEncuesta=" . $row['idEncuesta'] . "' class = 'btn btn-success' ><i class = 'glyphicon glyphicon-plus'></i></a></td> "
+                            . "<td><a href = './FormEditarEncuesta.php?idEncuesta=" . $row['idEncuesta'] . "&fCierre=" . $row['fechaCierre'] . "&nombre=" . $row['nombre'] . "' class = 'btn btn-warning' ><i class = 'glyphicon glyphicon-edit'></i></a></td>"
+                            . "<td><a href = './FormVerEncuesta.php?idEncuesta=" . $row['idEncuesta'] . "' class = 'btn btn-info' ><i class = 'glyphicon glyphicon-eye-open'></i></a></td>"
+                            . "<td><a href = '../controlador/EliminarEncuesta.php?idEncuesta=" . $row['idEncuesta'] . "' class = 'btn btn-danger' ><i class = 'glyphicon glyphicon-trash'></i></a></td>";
+                }
+            } while ($row = $modao->getArray($listado));
+            $result .= "          </tbody>
+                        </table>";
+            return $result;
+        } else {
+            $result .= "<td>No</td><td>Hay Egresados Registrados</td>           </tbody>
+                        </table>";
+            return $result;
+        }
+    }
+
+    public function EditarEncuesta($idEncuesta, $nomEncuesta, $fCierreEncuesta) {
+        $modto = new EncuestaDTO();
+        $modto->setIdEncuesta($idEncuesta);
+        $modto->setNombre($nomEncuesta);
+        $modto->setFechaFin($fCierreEncuesta);
+        $modao = new EncuestaDAO();
+        $result = $modao->EditarEncuesta($modto);
+        return $result;
+    }
+    public function EliminarEncuesta($idEncuesta) {
+        $modto = new EncuestaDTO();
+        $modto->setIdEncuesta($idEncuesta);
+        $modao = new EncuestaDAO();
+        $result = $modao->EliminarEncuesta($modto);
+        return $result;
+    }
+
+    /* TABLA RESPUESTA */
+
+    public function isEmptyRespuesta($idEncuesta) {
+        $modto = new RespuestasDTO();
+        $modto->setIdEncuesta($idEncuesta);
+        $modao = new RespuestasDAO();
+        $result = $modao->isEmptyRespuesta($modto);
+        return $result;
+    }
 
 }
