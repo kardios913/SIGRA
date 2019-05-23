@@ -9,6 +9,34 @@ class EgresadoDAO {
     function __construct() {
         $this->bd = conexion::getInstance();
     }
+    
+    public function RegistrarEgresado(EgresadoDTO $egre){
+         $this->bd->conection();
+        $consulta = "INSERT INTO `egresado`(`idEgresado`, `contrasena`, `apellido`, `nombre`, `correo`, `tipodocumeto`, `numDocumento`,  `idPrograma`) "
+                . "VALUES (".$egre->getCodEgresado().",'".$egre->getNDocumento()."','".$egre->getApellido()."','".$egre->getNombre()."','".$egre->getCorreo()."','".$egre->getTDocumento()."','".$egre->getNDocumento()."',".$egre->getCodPrograma().");";
+        $result = $this->bd->ejecutarConsultaSQL($consulta);
+        return $result;
+    }
+    public function ListarEgresado(){
+        $this->bd->conection();
+        $consulta = "SELECT `idEgresado`,`apellido`, `nombre`, `correo`, `tipodocumeto`, `numDocumento`,  `idPrograma` FROM `egresado`;";
+        $result = $this->bd->ejecutarConsultaSQL($consulta);
+        return $result;
+    }
+    
+    public function ListarVerEgresado($codEgresado){
+        $this->bd->conection();
+        $consulta = "SELECT * FROM `egresado` WHERE idEgresado=$codEgresado";
+        $result = $this->bd->ejecutarConsultaSQL($consulta);
+        return $result;
+    }
+    
+    public function EditarEgresado(EgresadoDTO $egre){
+        $this->bd->conection();
+        $consulta = "UPDATE `egresado` SET `apellido`='".$egre->getApellido()."',`nombre`='".$egre->getNombre()."',`correo`='".$egre->getCorreo()."',`tipodocumeto`='".$egre->getTDocumento()."',`numDocumento`='".$egre->getNDocumento()."',`idPrograma`=".$egre->getCodPrograma()." WHERE `idEgresado`=".$egre->getCodEgresado().";";
+        $result = $this->bd->ejecutarConsultaSQL($consulta);
+        return $result;
+    }
 
     public function getArray($result) {
         return ($this->bd->getArray($result));

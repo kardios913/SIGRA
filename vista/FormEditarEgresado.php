@@ -33,12 +33,18 @@
             <div class="box box-danger">
 
                 <!-- /.box-header -->
-                <!-- form start-->
-                <form role="form" method="POST" enctype="multipart/form-data" action="../controlador/CrearArticulo.php" id="FormArticulo">
+                <!-- form start
+                codEgresado=".$row['idEgresado']."
+                &nomEgresado=".$row['nombre']."
+                &apeEgresado=".$row['apellido']."
+                &docEgresado=".$row['numDocumento']."
+                &correo=".$row['correo']."
+                                            &idPrograma=".$row['idPrograma'].-->
+                <form role="form" method="POST" enctype="multipart/form-data" action="../controlador/EditarEgresado.php" id="FormArticulo">
                     <div class="box-body">
                         <div class='form-group'>
                             <label>Codigo</label>
-                            <input type='number' name='codEgresado' class='form-control' value="<?php echo $_GET['codEgresado'] ; ?>" placeholder="Codigo Egresado" required>
+                            <input type='number' name='codEgresado' class='form-control' value="<?php echo $_GET['codEgresado'] ; ?>" placeholder="Codigo Egresado" readonly>
                         </div> 
                         <div class='form-group'>
                             <label>Nombre</label>
@@ -49,8 +55,24 @@
                             <input type='text' name='apeEgresado' class='form-control' value="<?php echo $_GET['apeEgresado'] ; ?>" placeholder="Apellido Egresado"required>
                         </div> 
                         <div class='form-group'>
+                            <label>Tipo Documento</label>
+                            <select name="tipoDocumento" class="form-control" required>
+                                <option value="CC">CC</option>
+                                <option value="TI">TI</option>
+                                <option value="EXT">EXT</option>
+                            </select>
+                        </div> 
+                        <div class='form-group'>
                             <label>Documento</label>
                             <input type='number' name='docEgresado' class='form-control' value="<?php echo $_GET['docEgresado'] ; ?>" placeholder="Documento Egresado"required>
+                        </div>
+                        <div class='form-group'>
+                            <label>Correo</label>
+                            <input type='email' name='corEgresado' class='form-control' value="<?php echo $_GET['correo'] ; ?>" placeholder="Correo Egresado" required>
+                        </div> 
+                         <div class='form-group'>
+                            <label>Programa Academico</label>
+                            <input type='number' name='proEgresado' class='form-control' value="<?php echo $_GET['idPrograma'] ; ?>" placeholder="Programa Academico"required>
                         </div> 
                     </div>
                     <!-- /.box-body -->

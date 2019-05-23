@@ -50,4 +50,21 @@ class facSiEgre {
     public function  EditarPrograma($codPrograma,$nomPrograma){
         return $this->negSiEgre->EditarPrograma($codPrograma,$nomPrograma);
     }
+    
+    /*TABLA EGRESADO*/
+    public function RegistrarEgresado($codEgresado,$nomEgresado,$apeEgresado,$corEgresado,$tipoEgresado,$docEgresado,$proEgresado){
+        return $this->negSiEgre->RegistrarEgresado($codEgresado,$nomEgresado,$apeEgresado,$corEgresado,$tipoEgresado,$docEgresado, $proEgresado);
+    }
+    
+    public function EditarEgresado($codEgresado, $nomEgresado, $apeEgresado, $corEgresado, $tipoEgresado, $docEgresado, $proEgresado){
+        return $this->negSiEgre->EditarEgresado($codEgresado, $nomEgresado, $apeEgresado, $corEgresado, $tipoEgresado, $docEgresado, $proEgresado);
+    }
+    
+    public function ListarEgresado(){
+        return $this->negSiEgre->ListarEgresado();
+    }
+    
+    public function ListarVerEgresado($codEgresado){
+        return $this->negSiEgre->ListarVerEgresado($codEgresado);
+    }
 }

@@ -29,6 +29,6 @@ if ($result) {
 } else {
     echo '<script>alert("Usuario o Contraseña INCORRECTA!!") </script>';
     echo "<script language='javascript'>
-              window.location.href = '../vista/Admin.php';
+              window.location.href = '../Admin/index.php';
               </script>";
 }

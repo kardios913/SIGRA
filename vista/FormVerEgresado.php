@@ -34,62 +34,9 @@
 
                 <!-- /.box-header -->
                 <!-- form start -->
-                <form role="form" method="POST" enctype="multipart/form-data" action="../controlador/CrearArticulo.php" id="FormArticulo">
-                    <div class="box-body">
-                        <div class="col-lg-6 col-xs-6">
-                            <div class='form-group'>
-                                <label>Codigo: </label>
-                                <span><?php echo $_GET['codEgresado']; ?></span> 
-                            </div> 
-                            <div class='form-group'>
-                                <label>Nombre:</label>
-                                <span></span> 
-                            </div> 
-                            <div class='form-group'>
-                                <label>Apellido:</label>
-                                <span></span>
-                            </div> 
-                            <div class='form-group'>
-                                <label>Correo:</label>
-                                <span></span>
-                            </div> 
-                            <div class='form-group'>
-                                <label>Documento: </label>
-                                <span></span>
-                            </div> 
-                            <div class='form-group'>
-                                <label>Telefono:</label>
-                                <span></span>
-                            </div> 
-                        </div>
-                        <div class="col-lg-6 col-xs-6">
-                            
-                            <div class='form-group'>
-                                <label>Celular:</label>
-                                <span></span>
-                            </div> 
-                            <div class='form-group'>
-                                <label>Dirección:</label>
-                                <span></span>
-                            </div> 
-                            <div class='form-group'>
-                                <label>Departamento:</label>
-                                <span></span>
-                            </div> 
-                            <div class='form-group'>
-                                <label>Ciudad: </label>
-                                <span></span>
-                            </div> 
-                            <div class='form-group'>
-                                <label>Pais: </label>
-                                <span></span>
-                            </div> 
-                            <div class='form-group'>
-                                <label>Barrio: </label>
-                                <span></span>
-                            </div> 
-                        </div>
-                    </div>
+                <form role="form" method="POST" enctype="multipart/form-data" action="../controlador/ListarVerEgresado.php" id="FormArticulo">
+                     <?php $codVerEgresado = $_GET['codEgresado']; ?>
+                        <?php include_once '../controlador/ListarVerEgresado.php';?>
                     <!-- /.box-body -->
 
                     <div class="box-footer">

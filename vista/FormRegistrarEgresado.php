@@ -34,7 +34,7 @@
 
                 <!-- /.box-header -->
                 <!-- form start -->
-                <form role="form" method="POST" enctype="multipart/form-data" action="../controlador/CrearArticulo.php" id="FormArticulo">
+                <form role="form" method="POST" enctype="multipart/form-data" action="../controlador/RegistrarEgresado.php" id="FormArticulo">
                     <div class="box-body">
                         <div class='form-group'>
                             <label>Codigo</label>
@@ -63,6 +63,10 @@
                         <div class='form-group'>
                             <label>Documento</label>
                             <input type='number' name='docEgresado' class='form-control' placeholder="Documento Egresado"required>
+                        </div>
+                        <div class='form-group'>
+                            <label>Programa Academico</label>
+                            <input type='number' name='proEgresado' class='form-control' placeholder="Programa Academico"required>
                         </div> 
                     </div>
                     <!-- /.box-body -->
