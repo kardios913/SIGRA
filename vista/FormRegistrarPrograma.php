@@ -35,15 +35,15 @@
 
                 <!-- /.box-header -->
                 <!-- form start -->
-                <form role="form" method="POST" enctype="multipart/form-data" action="../controlador/CrearArticulo.php" id="FormArticulo">
+                <form role="form" method="GET" enctype="multipart/form-data" action="../controlador/RegistrarPrograma.php" id="FormArticulo">
                     <div class="box-body">
                         <div class='form-group'>
                             <label>Codigo Programa</label>
-                            <input type='number' name='codPrograma' class='form-control' placeholder="Codigo Programa" required>
+                            <input type='number' name='codPrograma' id='codPrograma' class='form-control' placeholder="Codigo Programa" required>
                         </div> 
                         <div class='form-group'>
                             <label>Nombre Programa</label>
-                            <input type='text' name='NomPrograma' class='form-control' placeholder="Nombre Programa"required>
+                            <input type='text' name='nomPrograma' id='nomPrograma' class='form-control' placeholder="Nombre Programa"required>
                         </div> 
                     </div>
                     <!-- /.box-body -->

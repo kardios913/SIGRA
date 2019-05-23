@@ -17,7 +17,7 @@
     </div>
 
     <!-- Login Form -->
-    <form action='vista/LoginAdmin.php'>
+    <form method="POST" action=''>
       <input type="text" id="login" class="fadeIn second" name="login" placeholder="Codigo">
       <input type="password" id="password" class="fadeIn third" name="login" placeholder="Password">
       <input type="submit" class="fadeIn fourth" value="Log In">

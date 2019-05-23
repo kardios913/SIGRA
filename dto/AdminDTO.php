@@ -2,23 +2,24 @@
 
 class AdminDTO {
 
-    private $Usuario;
+    private $email;
     private $Contrasena;
+    
 
     function __construct(){
 
     }
-    
-    function getUsuario() {
-        return $this->Usuario;
+  
+    function getEmail() {
+        return $this->email;
     }
 
     function getContrasena() {
         return $this->Contrasena;
     }
 
-    function setUsuario($Usuario) {
-        $this->Usuario = $Usuario;
+    function setEmail($email) {
+        $this->email = $email;
     }
 
     function setContrasena($Contrasena) {
@@ -27,6 +28,7 @@ class AdminDTO {
 
 
     
+
 }
 
 

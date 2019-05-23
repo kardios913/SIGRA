@@ -1,15 +1,15 @@
 <?php
-include_once ('../../config/conexion.php');
-include_once ('../dto/AdminDTO.php');
+include_once ('../config/conexion.php');
+include_once ('../dto/OpcionesPreguntasDTO.php');
 
-class AdminDAO {
+class OpcionesPreguntasDAO {
 
     private $bd;
 
     function __construct() {
         $this->bd = conexion::getInstance();
     }
-    
+
     public function getArray($result) {
         return ($this->bd->getArray($result));
     }

@@ -1,8 +1,8 @@
 <?php
-include_once ('../../config/conexion.php');
-include_once ('../dto/RespuestaDTO.php');
+include_once ('../config/conexion.php');
+include_once ('../dto/InfoEstudioDTO.php');
 
-class RespuestaDAO {
+class InfoEstudioDAO {
 
     private $bd;
 

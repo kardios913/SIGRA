@@ -32,4 +32,22 @@ class facSiEgre {
         }
         return self::$_instance;
     }
+    
+    public function LoginAdmin($mail,$pass) {
+        return $this->negSiEgre->LoginAdmin($mail, $pass);
+    }
+    
+    /*TABLA PROGRAMA**/
+    public function RegistrarPrograma($codPrograma,$nomPrograma){
+        return $this->negSiEgre->RegistrarPrograma($codPrograma,$nomPrograma);
+    }
+    
+    public function ListarPrograma(){
+        return $this->negSiEgre->ListarPrograma();
+        
+    }
+    
+    public function  EditarPrograma($codPrograma,$nomPrograma){
+        return $this->negSiEgre->EditarPrograma($codPrograma,$nomPrograma);
+    }
 }
