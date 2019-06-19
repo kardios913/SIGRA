@@ -18,7 +18,7 @@ $idEncuesta= $_GET['idEncuesta'];
 
 $result = $facade->EliminarEncuesta($idEncuesta);
 if ($result) {
-    echo '<script>alert("Encuesta Actualizada!!") </script>';
+    echo '<script>alert("Encuesta Eliminada!!") </script>';
     echo "<script language='javascript'>
               window.location.href = '../vista/FormListarEncuesta.php';
               </script>";

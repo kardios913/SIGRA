@@ -5,7 +5,6 @@ class EncuestaDTO {
     private $IdEncuesta;
     private $Nombre;
     private $FechaCreacio;
-    private $FechaFin;
 
     function __construct(){
 
@@ -22,10 +21,7 @@ class EncuestaDTO {
     function getFechaCreacio() {
         return $this->FechaCreacio;
     }
-
-    function getFechaFin() {
-        return $this->FechaFin;
-    }
+    
 
     function setIdEncuesta($IdEncuesta) {
         $this->IdEncuesta = $IdEncuesta;
@@ -38,11 +34,6 @@ class EncuestaDTO {
     function setFechaCreacio($FechaCreacio) {
         $this->FechaCreacio = $FechaCreacio;
     }
-
-    function setFechaFin($FechaFin) {
-        $this->FechaFin = $FechaFin;
-    }
-
 
 }
 

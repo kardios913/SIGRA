@@ -109,28 +109,63 @@ function FormFacturas() {
     ajax(url, datos, rta);
 }
 
-function TipoCliente() {
-    var Cliente = document.getElementById("Cliente").value;
-    var ventaAbierta = document.getElementById("VentaAbierta");
-    if (Cliente == 1) {
-        ventaAbierta.innerHTML = "";
-    } else {
-        ventaAbierta.innerHTML = "<div class='form-group'>"
-                + "<label>Cedula Cliente</label>"
-                + "<input type='number' name='Cedula' class='form-control' placeholder='Cedula CLiente' >"
-                + "</div>"
-                + "<div class='form-group'>"
-                + "<label>Nombre Cliente</label>"
-                + "<input type='text' name='NombreC' class='form-control' placeholder='Nombre CLiente'>"
-                + "</div> "
-                + "<div class='form-group'>"
-                + " <label>Vehiculo Cliente</label>"
-                + "<input type='text' name='Vehiculo' class='form-control' placeholder='Vehiculo CLiente' >"
-                + "</div> "
-                + "<div class='form-group'>"
-                + " <label>Telefono Cliente</label>"
-                + "<input type='number' name='Telefono' class='form-control' placeholder='Telefono CLiente' >"
-                + "</div> ";
+function Cargar() {
+    var tipoPregunta = document.getElementById("tipoPregunta").value;
+    var cantidadRespuestas = document.getElementById("cargarOpciones");
+    var formCantidad = document.getElementById("formCantidad");
+    var i = 1;
+    if (tipoPregunta == 1) {
+        cantidadRespuestas.innerHTML = "";
+        formCantidad.innerHTML = "";
     }
+    if (tipoPregunta == 2) {
+        cad = "<div class='form-group'>"
+                + "<input type='text' id='opcion" + i + "' name='opcion" + i + "' placeholder='opcion " + i + "' class='form-control'>"
+                + "</div>";
+        cantidadRespuestas.innerHTML = cad;
+        formCantidad.innerHTML = "<input type='hidden' id='cantidad'  name='cantidad' value='" + i + "' placeholder='opcion' class='form-control'>";
+    }
+    if (tipoPregunta == 3) {
+        cad = "<div class='form-group'>"
+                + "<div class='input-group'>"
+                + "<input type='text' id='opcion" + i + "' name='opcion" + i + "' placeholder='opcion " + i + "' class='form-control'>"
+                + "<span class='input-group-btn'>"
+                + "<button type='submit' class='btn btn-success' onclick='AddOpciones()'>+</button>"
+                + "</span>"
+                + "</div>"
+                + "</div>";
+
+        cantidadRespuestas.innerHTML = cad;
+        formCantidad.innerHTML = "<input type='hidden' id='cantidad'  name='cantidad' value='" + i + "' placeholder='opcion' class='form-control'>";
+    }
+    if (tipoPregunta == 4) {
+        cad = "<div class='form-group'>"
+                + "<div class='input-group'>"
+                + "<input type='text' id='opcion" + i + "' name='opcion" + i + "' placeholder='opcion " + i + "' class='form-control'>"
+                + "<span class='input-group-btn'>"
+                + "<button type='submit' class='btn btn-success' onclick='AddOpciones()'>+</button>"
+                + "</span>"
+                + "</div>"
+                + "</div>";
+        cantidadRespuestas.innerHTML = cad;
+        formCantidad.innerHTML = "<input type='hidden' id='cantidad'  name='cantidad' value='" + i + "' placeholder='opcion' class='form-control'>";
+    }
+}
+
+function AddOpciones() {
+    var opciones = document.getElementById("cargarOpciones");
+    var cantidad = document.getElementById("cantidad").value;
+    var formCantidad = document.getElementById("formCantidad");
+    cantidad++;
+    cad = "<div class='form-group'>"
+            + "<div class='input-group'>"
+            + "<input type='text' id='opcion" + cantidad + "' name='opcion" + cantidad + "' placeholder='opcion " + cantidad + "' class='form-control'>"
+            + "<span class='input-group-btn'>"
+            + "<button type='submit' class='btn btn-success' onclick='AddOpciones()'>+</button>"
+            + "</span>"
+            + "</div>"
+            + "</div>";
+    opciones.innerHTML += cad;
+    formCantidad.innerHTML = "<input type='hidden' id='cantidad'  name='cantidad' value='" + cantidad + "' placeholder='opcion' class='form-control'>";
 
 }

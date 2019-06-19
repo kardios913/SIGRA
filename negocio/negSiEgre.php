@@ -269,7 +269,6 @@ class negSiEgre {
                                     <th>id</th>
                                     <th>Nombre</th>
                                     <th>Creacion</th>
-                                    <th>Cierre</th>
                                     <th></th>
                                     <th></th>
                                     <th></th>
@@ -282,15 +281,14 @@ class negSiEgre {
                 $result .= "    <tr>
                                     <td>" . $row['idEncuesta'] . "</td>
                                     <td>" . $row['nombre'] . "</td>
-                                    <td>" . $row['fechaCreacion'] . "</td>
-                                    <td>" . $row['fechaCierre'] . "</td>";
+                                    <td>" . $row['fechaCreacion'] . "</td>";
                 if ($this->isEmptyRespuesta((int) $row['idEncuesta'])) {
                     $result .= "<td><a href = './FormShowResult.php?idEncuesta=" . $row['idEncuesta'] . "' class = 'btn btn-success' ><i class = 'fa fa-bar-chart'></i></a></td> "
                             . "<td><a href = './FormVerEncuesta.php?idEncuesta=" . $row['idEncuesta'] . "' class = 'btn btn-info' ><i class = 'glyphicon glyphicon-eye-open'></i></a></td>";
                 } else {
                     $result .= "<td><a href = './FormAddPregunta.php?idEncuesta=" . $row['idEncuesta'] . "' class = 'btn btn-success' ><i class = 'glyphicon glyphicon-plus'></i></a></td> "
-                            . "<td><a href = './FormEditarEncuesta.php?idEncuesta=" . $row['idEncuesta'] . "&fCierre=" . $row['fechaCierre'] . "&nombre=" . $row['nombre'] . "' class = 'btn btn-warning' ><i class = 'glyphicon glyphicon-edit'></i></a></td>"
-                            . "<td><a href = './FormVerEncuesta.php?idEncuesta=" . $row['idEncuesta'] . "' class = 'btn btn-info' ><i class = 'glyphicon glyphicon-eye-open'></i></a></td>"
+                            . "<td><a href = './FormEditarEncuesta.php?idEncuesta=" . $row['idEncuesta'] . "&nombre=" . $row['nombre'] . "' class = 'btn btn-warning' ><i class = 'glyphicon glyphicon-edit'></i></a></td>"
+                            . "<td><a href = './FormVerEncuesta.php?idEncuestaxxx=" . $row['idEncuesta'] . "' class = 'btn btn-info' ><i class = 'glyphicon glyphicon-eye-open'></i></a></td>"
                             . "<td><a href = '../controlador/EliminarEncuesta.php?idEncuesta=" . $row['idEncuesta'] . "' class = 'btn btn-danger' ><i class = 'glyphicon glyphicon-trash'></i></a></td>";
                 }
             } while ($row = $modao->getArray($listado));
@@ -298,8 +296,18 @@ class negSiEgre {
                         </table>";
             return $result;
         } else {
-            $result .= "<td>No</td><td>Hay Egresados Registrados</td>           </tbody>
-                        </table>";
+            $result .= "<td>No Hay </td><td>Encuestas Registradas</td>
+                           <td></td>
+                           <td></td>
+                           <td></td>
+                           <td></td>
+                           <td></td>
+                           <td></td>
+                            </tbody>
+                        </table>
+                        <div class='box-footer'>
+                        <a href='../vista/FormCrearEncuesta.php' class='btn btn-primary' type='submit'>Crear</a>
+                    </div>";
             return $result;
         }
     }
@@ -313,6 +321,7 @@ class negSiEgre {
         $result = $modao->EditarEncuesta($modto);
         return $result;
     }
+
     public function EliminarEncuesta($idEncuesta) {
         $modto = new EncuestaDTO();
         $modto->setIdEncuesta($idEncuesta);
@@ -329,6 +338,34 @@ class negSiEgre {
         $modao = new RespuestasDAO();
         $result = $modao->isEmptyRespuesta($modto);
         return $result;
+    }
+
+    public function GuardarOpciones($idEncuesta, $nomEncuesta, $tipoPregunta, $array) {
+        $res;
+        $modto = new PreguntasDTO();
+        $opcdto = new OpcionesPreguntasDTO();
+        $modto->setIdEncuesta($idEncuesta);
+        $modto->setEnunciado($nomEncuesta);
+        $modto->setTipoPregunta($tipoPregunta);
+        $modao = new PreguntasDAO();
+        $opcdao = new OpcionesPreguntasDAO();
+        $result = $modao->InsertarPregunta($modto);
+        if ($result) {
+            $getId = $modao->getIdPregunta($modto);
+            if ($row = $modao->getArray($getId)) {
+                do {
+                    $idPregunta = $row['idPregunta'];
+                    $count = count($array);
+                    for ($i = 0; $i < $count; $i++) {
+                        $opcdto->setIdEncuesta($idEncuesta);
+                        $opcdto->setIdPregunta($idPregunta);
+                        $opcdto->setOpcion($array[$i]);
+                       $res = $opcdao->InsertarOpciones($opcdto);
+                    }
+                } while ($row = $modao->getArray($getId));
+            }
+        }
+        return $res;
     }
 
 }

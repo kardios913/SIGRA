@@ -12,14 +12,14 @@ class EncuestaDAO {
     
     public function CrearEncuesta(EncuestaDTO $enc){
         $this->bd->conection();
-        $consulta = "INSERT INTO `encuesta`( `nombre`, `fechaCreacion`, `fechaCierre`) VALUES ('".$enc->getNombre()."','".$enc->getFechaCreacio()."','".$enc->getFechaFin()."');";
+        $consulta = "INSERT INTO `encuesta`( `nombre`, `fechaCreacion`) VALUES ('".$enc->getNombre()."','".$enc->getFechaCreacio()."');";
         $result = $this->bd->ejecutarConsultaSQL($consulta);
         return $result;
     }
     
     public function EditarEncuesta(EncuestaDTO $enc){
         $this->bd->conection();
-        $consulta = "UPDATE `encuesta` SET `nombre`='".$enc->getNombre()."',`fechaCierre`='".$enc->getFechaFin()."' WHERE `idEncuesta`=".$enc->getIdEncuesta().";";
+        $consulta = "UPDATE `encuesta` SET `nombre`='".$enc->getNombre()."' WHERE `idEncuesta`=".$enc->getIdEncuesta().";";
         $result = $this->bd->ejecutarConsultaSQL($consulta);
         return $result;
     }
@@ -33,7 +33,7 @@ class EncuestaDAO {
     
     public function ListarEncuesta(){
         $this->bd->conection();
-        $consulta = "SELECT `idEncuesta`, `nombre`, `fechaCreacion`, `fechaCierre` FROM `encuesta` ;";
+        $consulta = "SELECT `idEncuesta`, `nombre`, `fechaCreacion` FROM `encuesta` ;";
         $result = $this->bd->ejecutarConsultaSQL($consulta);
         return $result;
     }

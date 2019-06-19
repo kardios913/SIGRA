@@ -17,6 +17,55 @@ class OpcionesPreguntasDAO {
     public function getObject($result) {
         return ($this->bd->getObject($result));
     }
+    
+     public function InsertarOpciones(OpcionesPreguntasDTO $opc) {
+        $this->bd->conection();
+        $consulta = "INSERT INTO `opcionespregunta`(`idPregunta`, `idEncuesta`, `opcion`)"
+                . "VALUES (" . $opc->getIdPregunta() . "," . $opc->getIdEncuesta() . ",'".$opc->getOpcion()."');";
+        $result = $this->bd->ejecutarConsultaSQL($consulta);
+        return $result;
+    }
+
+    public function EditarOpciones(OpcionesPreguntasDTO $opc) {
+        $this->bd->conection();
+        $consulta = "UPDATE `opcionespregunta` "
+                . "SET `opcion`= '".$opc->getIdOpcion()."' "
+                . "WHERE `idOpcionesPregunta`= ".$opc->getIdOpcion().";";
+        $result = $this->bd->ejecutarConsultaSQL($consulta);
+        return $result;
+    }
+
+    public function EliminarOpciones(OpcionesPreguntasDTO $opc) {
+        $this->bd->conection();
+        $consulta = "DELETE FROM `opcionespregunta` "
+                . "WHERE `idOpcionesPregunta`= " . $opc->getIdOpcion() . ";";
+        $result = $this->bd->ejecutarConsultaSQL($consulta);
+        return $result;
+    }
+
+    public function ListarOpciones() {
+        $this->bd->conection();
+        $consulta = "SELECT `idOpcionesPregunta`, `idPregunta`, `idEncuesta`, `opcion` FROM `opcionespregunta;";
+        $result = $this->bd->ejecutarConsultaSQL($consulta);
+        return $result;
+    }
+
+    public function ListarPregunta(OpcionesPreguntasDTO $opc) {
+        $this->bd->conection();
+        $consulta = "SELECT `idOpcionesPregunta`, `idPregunta`, `idEncuesta`, `opcion` FROM `opcionespregunta"
+                . "WHERE `idOpcionesPregunta`= " . $opc->getIdOpcion() . ";";
+        $result = $this->bd->ejecutarConsultaSQL($consulta);
+        return $result;
+    } 
+    public function PintarEncuesta($idEncuesta, $idPregunta) {
+        $this->bd->conection();
+        $consulta = "SELECT p.idPregunta, p.idEncuesta, p.pregunta, p.tipoPregunta, opc.idOpcionesPregunta, opc.opcion "
+                . "FROM `pregunta` p JOIN `opcionespregunta` opc "
+                . "on (p.idPregunta = opc.idPregunta and p.idEncuesta = opc.idEncuesta) "
+                . "WHERE p.idEncuesta = ".$idEncuesta." and p.idPregunta = ".$idPregunta.";";
+        $result = $this->bd->ejecutarConsultaSQL($consulta);
+        return $result;
+    } 
 
 }
 

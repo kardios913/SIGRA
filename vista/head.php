@@ -14,6 +14,7 @@
         <link rel="stylesheet" href="../../assets/css/ionicons.min.css">
         <link rel="stylesheet" href="../../assets/css/AdminLTE.min.css">
         <link rel="stylesheet" href="../../assets/css/Style.css">
+        <script type="text/JavaScript" src="../assets/js/funciones.js"></script>
         <link rel="stylesheet" href="../../assets/css/skins/skin-red.min.css">
         <script src="../../assets/js/jquery-2.2.3.min.js"></script>
 <script>

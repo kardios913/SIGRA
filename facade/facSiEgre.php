@@ -98,4 +98,8 @@ class facSiEgre {
     public function EliminarEncuesta($idEncuesta) {
         return $this->negSiEgre->EliminarEncuesta($idEncuesta);
     }
+    
+    public function GuardarOpciones($idEncuesta,$nomEncuesta,$tipoPregunta,$array){
+        return $this->negSiEgre->GuardarOpciones($idEncuesta,$nomEncuesta,$tipoPregunta,$array);
+    }
 }

@@ -3,7 +3,7 @@
 <section class="content-header">
     <h1>
         <center>
-            Crear Encuesta<br>
+            Encuesta<br>
             <small>Formulario</small>
         </center>
     </h1>
@@ -30,23 +30,9 @@
         <!-- left column -->
         <div class="col-md-8 col-md-offset-2"> 
             <!-- general form elements -->
-            <div class="box box-danger">
-
-                <!-- /.box-header -->
-                <!-- form start -->
-                <form role="form" method="POST" enctype="multipart/form-data" action="../controlador/CrearEncuesta.php" id="FormArticulo">
-                    <div class="box-body">
-                        <div class='form-group'>
-                            <label>Nombre Encuesta</label>
-                            <input type='text' name='nomEncuesta' class='form-control' placeholder="Nombre Encuesta" required>
-                        </div> 
-                    </div>
-                    <!-- /.box-body -->
-                    <div class="box-footer">
-                        <button class="btn btn-primary" type="submit">Crear</button>
-                    </div>
-                </form>
-            </div>
+            <?php 
+            $idEncuestaxxx = $_GET['idEncuestaxxx'];
+            include_once "../controlador/VerEncuesta.php"; ?>
             <!-- /.box -->
         </div>
         <!--/.col (left) -->
