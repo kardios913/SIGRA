@@ -51,6 +51,14 @@ class PreguntasDAO {
         return $result;
     }
     
+    public function ListarPreguntaIdEncuesta($idEncuesta) {
+        $this->bd->conection();
+        $consulta = "SELECT idPregunta, pregunta, tipoPregunta FROM `pregunta`"
+                . "WHERE `idEncuesta`= " . $idEncuesta. ";";
+        $result = $this->bd->ejecutarConsultaSQL($consulta);
+        return $result;
+    }
+    
     public function getIdPregunta(PreguntasDTO $pre) {
         $this->bd->conection();
         $consulta = "SELECT idPregunta FROM `pregunta` "

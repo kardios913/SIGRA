@@ -6,8 +6,8 @@
 
     <center>
         <div>
-            <strong>&copy</strong>SIEGRE
-            <br>Sistema de Egresados
+            <strong>&copy</strong>SIGRA
+            <br>Sistema de Graduados
         </div>
     </center>
 </footer>

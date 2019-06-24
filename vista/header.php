@@ -25,7 +25,6 @@
                 <li class="header"><center>Menu del Sistema</center></li>
                 <!-- Optionally, you can add icons to the links -->
                 <li><a href="FormAdmin.php" ><i class="glyphicon glyphicon-home"></i><span>Inicio</span></a></li>
-
                 <li><a href="#" id="btn-1" data-toggle="collapse" data-target="#submenu1" aria-expanded="false">
                         <i class="fa fa-university"></i> <span>Programas</span></a>
                     <ul class="nav collapse sidebar-menu" id="submenu1" role="menu" aria-labelledby="btn-1">
@@ -34,10 +33,10 @@
                     </ul>
                 </li>
                 <li><a href="#" id="btn-2" data-toggle="collapse" data-target="#submenu2" aria-expanded="false">
-                        <i class="fa fa-graduation-cap"></i><span>Egresados</span></a>
+                        <i class="fa fa-graduation-cap"></i><span>Graduados</span></a>
                     <ul class="nav collapse sidebar-menu" id="submenu2" role="menu" aria-labelledby="btn-2">
-                        <li><a href="FormRegistrarEgresado.php" ><i class="fa fa-user-plus"></i> <span>Registrar Egresado</span></a></li>
-                        <li><a href="FormListarEgresado.php" ><i class="glyphicon glyphicon-list-alt"></i> <span>Listar Egresado</span></a></li>
+                        <li><a href="FormRegistrarEgresado.php" ><i class="fa fa-user-plus"></i> <span>Registrar Graduado</span></a></li>
+                        <li><a href="FormListarEgresado.php" ><i class="glyphicon glyphicon-list-alt"></i> <span>Listar Graduado</span></a></li>
                     </ul>
                 </li>
                 <li><a href="#" id="btn-3" data-toggle="collapse" data-target="#submenu3" aria-expanded="false">
@@ -46,7 +45,8 @@
                         <li><a href="FormCrearEncuesta.php" ><i class="fa fa-edit"></i> <span>Crear Encuesta</span></a></li>                          
                         <li><a href="FormListarEncuesta.php"><i class="glyphicon glyphicon-list-alt"></i> <span>Listar Encuesta</span></a></li>
                     </ul>
-                </li>
+                </li>       
+                <li><a href="../controlador/CerrarSession.php" ><i class="glyphicon glyphicon-home"></i><span>Cerrar Session</span></a></li>
             </ul>
             <!-- /.sidebar-menu -->
         </section>

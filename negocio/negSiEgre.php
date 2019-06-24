@@ -312,11 +312,10 @@ class negSiEgre {
         }
     }
 
-    public function EditarEncuesta($idEncuesta, $nomEncuesta, $fCierreEncuesta) {
+    public function EditarEncuesta($idEncuesta, $nomEncuesta) {
         $modto = new EncuestaDTO();
         $modto->setIdEncuesta($idEncuesta);
         $modto->setNombre($nomEncuesta);
-        $modto->setFechaFin($fCierreEncuesta);
         $modao = new EncuestaDAO();
         $result = $modao->EditarEncuesta($modto);
         return $result;
@@ -360,12 +359,67 @@ class negSiEgre {
                         $opcdto->setIdEncuesta($idEncuesta);
                         $opcdto->setIdPregunta($idPregunta);
                         $opcdto->setOpcion($array[$i]);
-                       $res = $opcdao->InsertarOpciones($opcdto);
+                        $res = $opcdao->InsertarOpciones($opcdto);
                     }
                 } while ($row = $modao->getArray($getId));
             }
         }
         return $res;
+    }
+
+    public function verEncuesta($idEncuestaxxx) {
+        $modao = new PreguntasDAO();
+        $opcDAO = new OpcionesPreguntasDAO();
+        $listado = $modao->ListarPreguntaIdEncuesta($idEncuestaxxx);
+        $result = "<div class='box box-danger'>
+                <form role='form' method='POST' enctype='multipart/form-data' action='' id='FormArticulo'>
+                    <div class='box-body'>";
+        if ($row = $modao->getArray($listado)) {
+            $contador = 1;
+            do {
+                $result .= "<div class='form-group'>"
+                        . "<h4>" . $contador . ". " . $row['pregunta'] . "</h4>"
+                        . "</div>";
+                if ($row['tipoPregunta'] == 2) {
+                    $result .= "<div class='form-group'>"
+                            . "<input type='text' id='opcion" . $contador . "' name='opcion" . $contador . "' placeholder='Respuesta " . $contador . "' class='form-control'>"
+                            . "</div>";
+                } else {
+                    $opc = $opcDAO->PintarEncuesta($idEncuestaxxx, $row['idPregunta']);
+                    if ($row2 = $opcDAO->getArray($opc)) {
+                        do {
+                            if ($row['tipoPregunta'] == 3) {
+                                $result .= "<div class='form-group'>"
+                                        . "<input type='radio' id='opcion" . $contador . "' name='opcion" . $contador . "' class='form-control'>"
+                                        . "<h6>".$row2['opcion']."</h6>"
+                                        . "</div>";
+                            }
+                            if ($row['tipoPregunta'] == 4) {
+                                $result .= "<div class='form-group'>"
+                                        . "<input type='radio' id='opcion" . $contador . "' name='opcion" . $contador . "' class='form-control'>"
+                                        . "<h6>".$row2['opcion']."</h6>"
+                                        . "</div>";
+                            }
+                        } while ($row2 = $opcDAO->getArray($opc));
+                    } else {
+                        $result .= "No Hay opciones Pregunta";
+                    }
+                }
+                $contador++;
+            } while ($row = $modao->getArray($listado));
+            $result .= "</div>"
+                    . "</form>"
+                    . "</div>";
+            return $result;
+        } else {
+            $result .= "<div class='form-group'>"
+                    . "<h4>NO HAY PREGUNTAS REGISTRADAS</h4>"
+                    . "</div>"
+                    . "</div>"
+                    . "</form>"
+                    . "</div>";
+            return $result;
+        }
     }
 
 }

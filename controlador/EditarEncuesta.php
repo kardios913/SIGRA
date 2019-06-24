@@ -16,8 +16,7 @@ $facade= facSiEgre::getInstance();
 
 $idEncuesta = $_POST['idEncuesta'];
 $nomEncuesta= $_POST['nomEncuesta'];
-$fCierreEncuesta= $_POST['fCierreEncuesta'];
-$result = $facade->EditarEncuesta($idEncuesta,$nomEncuesta,$fCierreEncuesta);
+$result = $facade->EditarEncuesta($idEncuesta,$nomEncuesta);
 if ($result) {
     echo '<script>alert("Encuesta Actualizada!!") </script>';
     echo "<script language='javascript'>

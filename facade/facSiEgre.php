@@ -91,8 +91,8 @@ class facSiEgre {
         return $this->negSiEgre->isEmptyRespuesta();
     }
     
-    public function EditarEncuesta($idEncuesta,$nomEncuesta,$fCierreEncuesta){
-        return $this->negSiEgre->EditarEncuesta($idEncuesta,$nomEncuesta,$fCierreEncuesta);
+    public function EditarEncuesta($idEncuesta,$nomEncuesta){
+        return $this->negSiEgre->EditarEncuesta($idEncuesta,$nomEncuesta);
     }
     
     public function EliminarEncuesta($idEncuesta) {
@@ -101,5 +101,9 @@ class facSiEgre {
     
     public function GuardarOpciones($idEncuesta,$nomEncuesta,$tipoPregunta,$array){
         return $this->negSiEgre->GuardarOpciones($idEncuesta,$nomEncuesta,$tipoPregunta,$array);
+    }
+    
+    public function verEncuesta($idEncuestaxxx){
+        return $this->negSiEgre->verEncuesta($idEncuestaxxx);
     }
 }

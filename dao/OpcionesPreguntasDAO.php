@@ -59,9 +59,8 @@ class OpcionesPreguntasDAO {
     } 
     public function PintarEncuesta($idEncuesta, $idPregunta) {
         $this->bd->conection();
-        $consulta = "SELECT p.idPregunta, p.idEncuesta, p.pregunta, p.tipoPregunta, opc.idOpcionesPregunta, opc.opcion "
-                . "FROM `pregunta` p JOIN `opcionespregunta` opc "
-                . "on (p.idPregunta = opc.idPregunta and p.idEncuesta = opc.idEncuesta) "
+        $consulta = "SELECT p.idOpcionesPregunta, p.opcion "
+                . "FROM `opcionespregunta` p "
                 . "WHERE p.idEncuesta = ".$idEncuesta." and p.idPregunta = ".$idPregunta.";";
         $result = $this->bd->ejecutarConsultaSQL($consulta);
         return $result;
