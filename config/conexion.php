@@ -3,9 +3,9 @@
 class conexion {
 
     private $servidor = "localhost"; 
-    private $usuario = "root";
-    private $constrasena = "";
-    private $bd = "SiEgre";
+    private $usuario = "sigra2019";
+    private $constrasena = "administradorsigra2019";
+    private $bd = "sigra";
 
 
 
