@@ -9,7 +9,7 @@ if (($_SESSION['mail']) != '') {
     <section class="content-header">
         <h1>
             <center>
-                Formulario Egresados<br>
+                Formulario Graduados<br>
                 <small>Seleccion una Opción</small>
             </center>
         </h1>
@@ -23,7 +23,7 @@ if (($_SESSION['mail']) != '') {
                 <div class="small-box bg-red">
                     <div class="inner">
 
-                        <p>Registrar Egresado</p>
+                        <p>Registrar Graduado</p>
                     </div>
                     <div class="icon">
                         <i class="fa fa-user-plus"></i>
@@ -36,7 +36,7 @@ if (($_SESSION['mail']) != '') {
                 <div class="small-box bg-red">
                     <div class="inner">
 
-                        <p>Listar Egresado</p>
+                        <p>Listar Graduado</p>
                     </div>
                     <div class="icon">
                         <i class="glyphicon glyphicon-list-alt"></i>

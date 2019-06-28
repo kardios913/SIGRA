@@ -6,15 +6,23 @@ class InfoLaboralDTO {
     private $Entidad;
     private $Cargo;
     private $FechaInicio;
+    private $FechaFin;
     private $Pais;
     private $Ciudad;
     private $CodEgresado;
 
-
-    function __construct(){
-
+    function __construct() {
+        
     }
-    
+
+    function getFechaFin() {
+        return $this->FechaFin;
+    }
+
+    function setFechaFin($FechaFin) {
+        $this->FechaFin = $FechaFin;
+    }
+
     function getCodigoLaboral() {
         return $this->CodigoLaboral;
     }
@@ -71,10 +79,6 @@ class InfoLaboralDTO {
         $this->CodEgresado = $CodEgresado;
     }
 
-   
-    
 }
-
-
 
 ?>

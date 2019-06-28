@@ -3,11 +3,8 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/xampp/htdocs/SiEgre/facade/facSiEgre.php</file>
-            <file>file:/C:/xampp/htdocs/SiEgre/controlador/VerEncuesta.php</file>
-            <file>file:/C:/xampp/htdocs/SiEgre/negocio/negSiEgre.php</file>
-            <file>file:/C:/xampp/htdocs/SiEgre/controlador/CrearEncuesta.php</file>
-            <file>file:/C:/xampp/htdocs/SiEgre/dao/OpcionesPreguntasDAO.php</file>
+            <file>file:/C:/xampp/htdocs/SIGRA/vista/headerG.php</file>
+            <file>file:/C:/xampp/htdocs/SIGRA/vista/header.php</file>
         </group>
     </open-files>
 </project-private>

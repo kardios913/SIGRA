@@ -15,10 +15,9 @@ include_once '../facade/facSiEgre.php';
 $facade= facSiEgre::getInstance();
 
 $nomEncuesta= $_POST['nomEncuesta'];
-$fCierreEncuesta= $_POST['fCierreEncuesta'];
 $fCreacionEncuesta= $facade->datetime();
 
-$result = $facade->CrearEncuesta($nomEncuesta,$fCierreEncuesta,$fCreacionEncuesta);
+$result = $facade->CrearEncuesta($nomEncuesta,$fCreacionEncuesta);
 if ($result) {
     echo '<script>alert("Encuesta Creada!!") </script>';
     echo "<script language='javascript'>

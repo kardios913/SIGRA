@@ -28,10 +28,10 @@ class PreguntasDAO {
         return $result;
     }
 
-    public function EliminarPregunta(PreguntasDTO $pre) {
+    public function EliminarPregunta($pre) {
         $this->bd->conection();
         $consulta = "DELETE FROM `pregunta` "
-                . "WHERE `idPregunta`= " . $pre->getIdPregunta() . ";";
+                . "WHERE `idEncuesta`= " . $pre. ";";
         $result = $this->bd->ejecutarConsultaSQL($consulta);
         return $result;
     }

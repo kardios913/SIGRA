@@ -250,10 +250,9 @@ class negSiEgre {
 
     /* TABLA ENCUESTAS */
 
-    public function CrearEncuesta($nomEncuesta, $fCierreEncuesta, $fCreacionEncuesta) {
+    public function CrearEncuesta($nomEncuesta,  $fCreacionEncuesta) {
         $modto = new EncuestaDTO();
         $modto->setNombre($nomEncuesta);
-        $modto->setFechaFin($fCierreEncuesta);
         $modto->setFechaCreacio($fCreacionEncuesta);
         $modao = new EncuestaDAO();
         $result = $modao->CrearEncuesta($modto);
@@ -296,7 +295,7 @@ class negSiEgre {
                         </table>";
             return $result;
         } else {
-            $result .= "<td>No Hay </td><td>Encuestas Registradas</td>
+            $result .= "<td></td><td>No Hay Encuestas Registradas</td>
                            <td></td>
                            <td></td>
                            <td></td>
@@ -325,7 +324,14 @@ class negSiEgre {
         $modto = new EncuestaDTO();
         $modto->setIdEncuesta($idEncuesta);
         $modao = new EncuestaDAO();
-        $result = $modao->EliminarEncuesta($modto);
+        $opcdao = new OpcionesPreguntasDAO();
+        $result = false;
+        if($opcdao->EliminarOpciones($idEncuesta)){
+            $predao = new PreguntasDAO();
+            if($predao->EliminarPregunta($idEncuesta)){
+                $result = $modao->EliminarEncuesta($modto);
+            }
+        }
         return $result;
     }
 
@@ -381,7 +387,7 @@ class negSiEgre {
                         . "<h4>" . $contador . ". " . $row['pregunta'] . "</h4>"
                         . "</div>";
                 if ($row['tipoPregunta'] == 2) {
-                    $result .= "<div class='form-group'>"
+                    $result .= "<div style='padding-left:15px' class='form-group'>"
                             . "<input type='text' id='opcion" . $contador . "' name='opcion" . $contador . "' placeholder='Respuesta " . $contador . "' class='form-control'>"
                             . "</div>";
                 } else {
@@ -389,15 +395,17 @@ class negSiEgre {
                     if ($row2 = $opcDAO->getArray($opc)) {
                         do {
                             if ($row['tipoPregunta'] == 3) {
-                                $result .= "<div class='form-group'>"
-                                        . "<input type='radio' id='opcion" . $contador . "' name='opcion" . $contador . "' class='form-control'>"
-                                        . "<h6>".$row2['opcion']."</h6>"
+                                $result .= "<div style='padding-left:15px' class='form-check'>"
+                                        . "<label><input type='radio' id='opcion" . $contador . "' name='opcion" . $contador . "' class='form-radio-input' id=''> "
+                                        . $row2['opcion']
+                                        . "</label>"
                                         . "</div>";
                             }
                             if ($row['tipoPregunta'] == 4) {
-                                $result .= "<div class='form-group'>"
-                                        . "<input type='radio' id='opcion" . $contador . "' name='opcion" . $contador . "' class='form-control'>"
-                                        . "<h6>".$row2['opcion']."</h6>"
+                                $result .= "<div style='padding-left:15px' class='form-check'>"
+                                        . "<label><input type='checkbox' id='opcion" . $contador . "' name='opcion" . $contador . "' class='form-check-input' id=''> "
+                                        . $row2['opcion']
+                                        . "</label>"
                                         . "</div>";
                             }
                         } while ($row2 = $opcDAO->getArray($opc));
@@ -408,6 +416,358 @@ class negSiEgre {
                 $contador++;
             } while ($row = $modao->getArray($listado));
             $result .= "</div>"
+                    . "</form>"
+                    . "</div>";
+            return $result;
+        } else {
+            $result .= "<div class='form-group'>"
+                    . "<h4>NO HAY PREGUNTAS REGISTRADAS</h4>"
+                    . "</div>"
+                    . "</div>"
+                    . "</form>"
+                    . "</div>";
+            return $result;
+        }
+    }
+
+    /**
+     * MODULO GRADUADO
+     */
+    public function LoginGraduado($documento, $pass) {
+        $modto = new EgresadoDTO;
+        $modto->setContrasena($pass);
+        $modto->setNDocumento($documento);
+        $modao = new EgresadoDAO();
+        $result = $modao->LoginGraduado($modto);
+        return $result;
+    }
+
+    public function informacionPersonal($documento) {
+        $modao = new EgresadoDAO();
+        $listado = $modao->InformacionPersonal($documento);
+        $result = "<div class='box-body'>";
+        if ($row = $modao->getArray($listado)) {
+            $result .= "                         
+                        <div class='col-lg-6 col-xs-'>
+                            <div class='form-group'>
+                                <label>Codigo: </label>
+                                <span>" . $row['idEgresado'] . "</span> 
+                            </div> 
+                            <div class='form-group'>
+                                <label>Nombre:</label>
+                                <span>" . $row['nombre'] . "</span> 
+                            </div> 
+                            <div class='form-group'>
+                                <label>Apellido:</label>
+                                <span>" . $row['apellido'] . "</span>
+                            </div> 
+                            <div class='form-group'>
+                                <label>Correo:</label>
+                                <span>" . $row['correo'] . "</span>
+                            </div> 
+                            <div class='form-group'>
+                                <label>Documento: </label>
+                                <span>" . $row['numDocumento'] . "</span>
+                            </div> 
+                            <div class='form-group'>
+                                <label>Telefono:</label>
+                                <span>" . $row['telefono'] . "</span>
+                            </div> 
+                        </div>
+                        <div class='col-lg-6 col-xs-6'>
+                            
+                            <div class='form-group'>
+                                <label>Celular:</label>
+                                <span>" . $row['celular'] . "</span>
+                            </div> 
+                            <div class='form-group'>
+                                <label>Dirección:</label>
+                                <span>" . $row['dirResidencia'] . "</span>
+                            </div> 
+                            <div class='form-group'>
+                                <label>Barrio: </label>
+                                <span>" . $row['barrioResidencia'] . "</span>
+                            </div> 
+                            <div class='form-group'>
+                                <label>Ciudad: </label>
+                                <span>" . $row['ciudResidencia'] . "</span>
+                            </div> 
+                            <div class='form-group'>
+                                <label>Departamento:</label>
+                                <span>" . $row['depResidencia'] . "</span>
+                            </div> 
+                            <div class='form-group'>
+                                <label>Pais: </label>
+                                <span>" . $row['paisResidencia'] . "</span>
+                            </div> 
+                        </div>  ";
+            $result .= "</div>";
+            $result .= "<div class='box-footer'>"
+                    . "<div class='col-lg-6 col-xs-6'><a class='btn btn-primary'  href='FormGraduado.php' >Atras</a> </div>"
+                    . "<div class='col-lg-6 col-xs-6' align='right' ><a class='btn btn-success'  href='FormEditarInformacionPersonal.php?codEgresado=" . $row['idEgresado'] . "&nomEgresado=" . $row['nombre'] . "&apeEgresado=" . $row['apellido'] . "&docEgresado=" . $row['numDocumento'] . "&correo=" . $row['correo'] . "&idPrograma=" . $row['idPrograma'] . "&telEgresado=" . $row['telefono'] . "&celEgresado=" . $row['celular'] . "&dirEgresado=" . $row['dirResidencia'] . "&barrioEgresado=" . $row['barrioResidencia'] . "&ciudadEgresado=" . $row['ciudResidencia'] . "&depEgresado=" . $row['depResidencia'] . "&paisEgresado=" . $row['paisResidencia'] . "' class = 'btn btn-info' ><i class = 'glyphicon glyphicon-edit'></i> Editar</a></div>"
+                    . "</div>";
+            return $result;
+        } else {
+            $result .= "No hay Informacion </div>";
+            return $result;
+        }
+    }
+
+    public function ActualizarInfo($codEgresado, $nomEgresado, $apeEgresado, $corEgresado, $tipoEgresado, $docEgresado, $proEgresado, $tel, $cel, $direccion, $barrio, $ciudad, $depar, $pais) {
+        $modto = new EgresadoDTO();
+        $modto->setCodEgresado($codEgresado);
+        $modto->setNombre($nomEgresado);
+        $modto->setApellido($apeEgresado);
+        $modto->setCorreo($corEgresado);
+        $modto->setTDocumento($tipoEgresado);
+        $modto->setNDocumento($docEgresado);
+        $modto->setCodPrograma($proEgresado);
+        $modto->setTelefono($tel);
+        $modto->setCelular($cel);
+        $modto->setDirResidencia($direccion);
+        $modto->setBarriResidencia($barrio);
+        $modto->setCiuResidencia($ciudad);
+        $modto->setDepResidencia($depar);
+        $modto->setPaisResidencia($pais);
+        $modao = new EgresadoDAO();
+        $result = $modao->ActualizarInfo($modto);
+        return $result;
+    }
+
+    public function ListarInfoLaboral($documento) {
+        $modao = new InfoLaboralDAO();
+        $listado = $modao->ListarInformacionLaboral($documento);
+        $result = "<table id='mytable' class='table table-bordred table-striped table-responsive'>
+                            <thead>
+                                <tr>
+                                    <th>Id</th>
+                                    <th>Entidad</th>
+                                    <th>Cargo</th>
+                                    <th>Fecha Inicio</th>
+                                    <th>Fecha Fin</th>
+                                    <th>Ciudad</th>
+                                    <th>Pais</th>
+                                    <th></th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody id='myTable'>";
+        //'contrasena'   'tipodocumeto'   'idPrograma'
+        if ($row = $modao->getArray($listado)) {
+            do {
+                $result .= "    <tr>
+                                    <td>" . $row['idinfoLaboral'] . "</td>
+                                    <td>" . $row['entidad'] . "</td>
+                                    <td>" . $row['cargo'] . "</td>
+                                    <td>" . $row['fechaInicio'] . "</td>
+                                    <td>" . $row['fechaFin'] . "</td>
+                                    <td>" . $row['ciudad'] . "</td>
+                                    <td>" . $row['pais'] . "</td>
+                                    <td><a href = './FormEditarInfoLaboral.php?idinfoLaboral=" . $row['idinfoLaboral'] . "&entidad=" . $row['entidad'] . "&cargo=" . $row['cargo'] . "&fechaInicio=" . $row['fechaInicio'] . "&fechaFin=" . $row['fechaFin'] . "&ciudad=" . $row['ciudad'] . "&pais=" . $row['pais'] . "' class = 'btn btn-info' ><i class = 'glyphicon glyphicon-edit'></i></a></td> 
+                                    <td><a href = '../controlador/ELiminarInfoLaboral.php?id=" . $row['idinfoLaboral'] . "' class = 'btn btn-danger' ><i class = 'glyphicon glyphicon-trash'></i></a></td> ";
+            } while ($row = $modao->getArray($listado));
+        } else {
+            $result .= "<th></th>"
+                    . "<th></th>"
+                    . "<th></th>"
+                    . "<th>No Hay Informacion Para Mostrar</th>"
+                    . "<th></th>"
+                    . "<th></th>"
+                    . "<th></th>"
+                    . "<th></th>"
+                    . "<th></th>";
+        }
+        $result .= "          </tbody>
+                        </table>";
+
+        return $result;
+    }
+
+    public function AgregarInformacionLaboral($documento, $Entidad, $Cargo, $Inicio, $Fin, $Ciudad, $Pais) {
+        $moddto = new InfoLaboralDTO();
+        $moddto->setCodEgresado($documento);
+        $moddto->setEntidad($Entidad);
+        $moddto->setCargo($Cargo);
+        $moddto->setFechaInicio($Inicio);
+        $moddto->setFechaFin($Fin);
+        $moddto->setCiudad($Ciudad);
+        $moddto->setPais($Pais);
+        $moddao = new InfoLaboralDAO();
+        $result = $moddao->RegistrarInformacionLaboral($moddto);
+        return $result;
+    }
+
+    public function EditarInformacionLaboral($id, $Entidad, $Cargo, $Inicio, $Fin, $Ciudad, $Pais) {
+        $moddto = new InfoLaboralDTO();
+        $moddto->setCodigoLaboral($id);
+        $moddto->setEntidad($Entidad);
+        $moddto->setCargo($Cargo);
+        $moddto->setFechaInicio($Inicio);
+        $moddto->setFechaFin($Fin);
+        $moddto->setCiudad($Ciudad);
+        $moddto->setPais($Pais);
+        $moddao = new InfoLaboralDAO();
+        $result = $moddao->ActualizarInformacionLaboral($moddto);
+        return $result;
+    }
+
+    public function EliminarInformacionLaboral($id) {
+        $modao = new InfoLaboralDAO();
+        $result = $modao->EliminarInformacionLaboral($id);
+        return $result;
+    }
+
+    //`idinfoEstudio`, `titulo`, `entidad`, `fechaTitulacion`, `semestre` 
+    public function ListarInfoAcademica($documento) {
+        $modao = new InfoEstudioDAO();
+        $listado = $modao->ListarInformacionAcademica($documento);
+        $result = "<table id='mytable' class='table table-bordred table-striped table-responsive'>
+                            <thead>
+                                <tr>
+                                    <th>Id</th>
+                                    <th>Titulo</th>
+                                    <th>Entidad</th>
+                                    <th>Fecha Titulacion</th>
+                                    <th>Semestre</th>
+                                    <th></th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody id='myTable'>";
+        //'contrasena'   'tipodocumeto'   'idPrograma'
+        if ($row = $modao->getArray($listado)) {
+            do {
+                $result .= "    <tr>
+                                    <td>" . $row['idinfoEstudio'] . "</td>
+                                    <td>" . $row['titulo'] . "</td>
+                                    <td>" . $row['entidad'] . "</td>
+                                    <td>" . $row['fechaTitulacion'] . "</td>
+                                    <td>" . $row['semestre'] . "</td>
+                                    <td><a href = './FormEditarInfoAcademica.php?idinfoEstudio=" . $row['idinfoEstudio'] . "&titulo=" . $row['titulo'] . "&entidad=" . $row['entidad'] . "&fechaTitulacion=" . $row['fechaTitulacion'] . "&semestre=" . $row['semestre'] . "' class = 'btn btn-info' ><i class = 'glyphicon glyphicon-edit'></i></a></td> 
+                                    <td><a href = '../controlador/ELiminarInfoAcademica.php?id=" . $row['idinfoEstudio'] . "' class = 'btn btn-danger' ><i class = 'glyphicon glyphicon-trash'></i></a></td> ";
+            } while ($row = $modao->getArray($listado));
+        } else {
+            $result .= "<th></th>"
+                    . "<th></th>"
+                    . "<th></th>"
+                    . "<th>No Hay Informacion Para Mostrar</th>"
+                    . "<th></th>"
+                    . "<th></th>"
+                    . "<th></th>";
+        }
+        $result .= "          </tbody>
+                        </table>";
+
+        return $result;
+    }
+
+    public function AgregarInformacionAcademica($documento, $Entidad, $Titulo, $Fecha, $Semestre) {
+        $moddto = new InfoEstudioDTO();
+        $moddto->setCodEgresado($documento);
+        $moddto->setEntidad($Entidad);
+        $moddto->setTitulo($Titulo);
+        $moddto->setFechaTitulacion($Fecha);
+        $moddto->setSemestre($Semestre);
+        $moddao = new InfoEstudioDAO();
+        $result = $moddao->RegistrarInformacionAcademica($moddto);
+        return $result;
+    }
+
+    public function EditarInformacionAcademica($id, $Entidad, $Titulo, $Fecha, $Semestre) {
+        $moddto = new InfoEstudioDTO();
+        $moddto->setCodEstudio($id);
+        $moddto->setEntidad($Entidad);
+        $moddto->setTitulo($Titulo);
+        $moddto->setFechaTitulacion($Fecha);
+        $moddto->setSemestre($Semestre);
+        $moddao = new InfoEstudioDAO();
+        $result = $moddao->ActualizarInformacionAcademica($moddto);
+        return $result;
+    }
+
+    public function EliminarInformacionAcademica($id) {
+        $modao = new InfoEstudioDAO();
+        $result = $modao->EliminarInformacionAcademica($id);
+        return $result;
+    }
+
+    public function ListarEncuestaGraduado() {
+        $modao = new EncuestaDAO;
+        $listado = $modao->ListarEncuesta();
+        $result = "<table id='mytable' class='table table-bordred table-striped table-responsive'>
+                            <thead>
+                                <tr>
+                                    <th>id</th>
+                                    <th>Nombre</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody id='myTable'>";
+        if ($row = $modao->getArray($listado)) {
+            do {
+                $result .= "    <tr>
+                                    <td>" . $row['idEncuesta'] . "</td>
+                                    <td>" . $row['nombre'] . "</td>";
+
+                $result .= "<td><a href = './FormVerEncuestaGraduado.php?idEncuestaxxx=" . $row['idEncuesta'] . "' class = 'btn btn-info' ><i class = 'glyphicon glyphicon-eye-open'></i></a></td>";
+            } while ($row = $modao->getArray($listado));
+            $result .= "          </tbody>
+                        </table>";
+            return $result;
+        } else {
+            $result .= "<td></td>
+                <td>No Hay Encuestas Registradas</td>
+                           <td></td>
+                            </tbody>
+                        </table>";
+            return $result;
+        }
+    }
+
+    public function verEncuestaGraduado($idEncuestaxxx) {
+        $modao = new PreguntasDAO();
+        $opcDAO = new OpcionesPreguntasDAO();
+        $listado = $modao->ListarPreguntaIdEncuesta($idEncuestaxxx);
+        $result = "<div class='box box-danger'>
+                <form role='form' method='POST' enctype='multipart/form-data' action='' id='FormArticulo'>
+                    <div class='box-body'>";
+        if ($row = $modao->getArray($listado)) {
+            $contador = 1;
+            do {
+                $result .= "<div class='form-group'>"
+                        . "<h4>" . $contador . ". " . $row['pregunta'] . "</h4>"
+                        . "</div>";
+                if ($row['tipoPregunta'] == 2) {
+                    $result .= "<div style='padding-left:15px' class='form-group'>"
+                            . "<input type='text' id='opcion" . $contador . "' name='opcion" . $contador . "' placeholder='Respuesta " . $contador . "' class='form-control'>"
+                            . "</div>";
+                } else {
+                    $opc = $opcDAO->PintarEncuesta($idEncuestaxxx, $row['idPregunta']);
+                    if ($row2 = $opcDAO->getArray($opc)) {
+                        do {
+                            if ($row['tipoPregunta'] == 3) {
+                                $result .= "<div style='padding-left:15px' class='form-check'>"
+                                        . "<label><input type='radio' id='opcion" . $contador . "' name='opcion" . $contador . "' class='form-radio-input' id=''> "
+                                        . $row2['opcion']
+                                        . "</label>"
+                                        . "</div>";
+                            }
+                            if ($row['tipoPregunta'] == 4) {
+                                $result .= "<div style='padding-left:15px' class='form-check'>"
+                                        . "<label><input type='checkbox' id='opcion" . $contador . "' name='opcion" . $contador . "' class='form-check-input' id=''> "
+                                        . $row2['opcion']
+                                        . "</label>"
+                                        . "</div>";
+                            }
+                        } while ($row2 = $opcDAO->getArray($opc));
+                    } else {
+                        $result .= "No Hay opciones Pregunta";
+                    }
+                }
+                $contador++;
+            } while ($row = $modao->getArray($listado));
+            $result .= "</div>"
+                    . " <input type='text' name='contador' class='form-control' value='".$contador."' readonly> "
                     . "</form>"
                     . "</div>";
             return $result;

@@ -4,8 +4,8 @@
 
         <a href="FormAdmin.php"  class="logo">
             <!-- logo for regular state and mobile devices -->
-            <span class="logo-mini">SE</span>
-            <span class="logo-lg">SIEGRE</span>
+            <span class="logo-mini">SG</span>
+            <span class="logo-lg">SIGRA</span>
         </a>
         <!-- Header Navbar -->
         <nav class="navbar navbar-static-top" role="navigation">
@@ -46,7 +46,7 @@
                         <li><a href="FormListarEncuesta.php"><i class="glyphicon glyphicon-list-alt"></i> <span>Listar Encuesta</span></a></li>
                     </ul>
                 </li>       
-                <li><a href="../controlador/CerrarSession.php" ><i class="glyphicon glyphicon-home"></i><span>Cerrar Session</span></a></li>
+                <li><a href="../controlador/CerrarSession.php" ><i class="glyphicon glyphicon-log-out"></i><span>Cerrar Session</span></a></li>
             </ul>
             <!-- /.sidebar-menu -->
         </section>

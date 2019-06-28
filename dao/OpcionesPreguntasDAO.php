@@ -35,10 +35,10 @@ class OpcionesPreguntasDAO {
         return $result;
     }
 
-    public function EliminarOpciones(OpcionesPreguntasDTO $opc) {
+    public function EliminarOpciones($idopc) {
         $this->bd->conection();
         $consulta = "DELETE FROM `opcionespregunta` "
-                . "WHERE `idOpcionesPregunta`= " . $opc->getIdOpcion() . ";";
+                . "WHERE `idEncuesta`= " . $idopc . ";";
         $result = $this->bd->ejecutarConsultaSQL($consulta);
         return $result;
     }

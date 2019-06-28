@@ -13,7 +13,7 @@ class EgresadoDAO {
     public function RegistrarEgresado(EgresadoDTO $egre){
          $this->bd->conection();
         $consulta = "INSERT INTO `egresado`(`idEgresado`, `contrasena`, `apellido`, `nombre`, `correo`, `tipodocumeto`, `numDocumento`,  `idPrograma`) "
-                . "VALUES (".$egre->getCodEgresado().",'".$egre->getNDocumento()."','".$egre->getApellido()."','".$egre->getNombre()."','".$egre->getCorreo()."','".$egre->getTDocumento()."','".$egre->getNDocumento()."',".$egre->getCodPrograma().");";
+                . "VALUES (".$egre->getCodEgresado().",'".$egre->getNDocumento()."SIGRA','".$egre->getApellido()."','".$egre->getNombre()."','".$egre->getCorreo()."','".$egre->getTDocumento()."','".$egre->getNDocumento()."',".$egre->getCodPrograma().");";
         $result = $this->bd->ejecutarConsultaSQL($consulta);
         return $result;
     }
@@ -31,9 +31,42 @@ class EgresadoDAO {
         return $result;
     }
     
+    public function InformacionPersonal($Ndocumento){
+        $this->bd->conection();
+        $consulta = "SELECT * FROM `egresado` WHERE numDocumento=$Ndocumento";
+        $result = $this->bd->ejecutarConsultaSQL($consulta);
+        return $result;
+    }
+    
     public function EditarEgresado(EgresadoDTO $egre){
         $this->bd->conection();
         $consulta = "UPDATE `egresado` SET `apellido`='".$egre->getApellido()."',`nombre`='".$egre->getNombre()."',`correo`='".$egre->getCorreo()."',`tipodocumeto`='".$egre->getTDocumento()."',`numDocumento`='".$egre->getNDocumento()."',`idPrograma`=".$egre->getCodPrograma()." WHERE `idEgresado`=".$egre->getCodEgresado().";";
+        $result = $this->bd->ejecutarConsultaSQL($consulta);
+        return $result;
+    }
+    public function ActualizarInfo(EgresadoDTO $egre){
+        $this->bd->conection();
+        $consulta = "UPDATE `egresado` SET `apellido`='".$egre->getApellido()."'"
+                . ",`nombre`='".$egre->getNombre()."'"
+                . ",`correo`='".$egre->getCorreo()."'"
+                . ",`tipodocumeto`='".$egre->getTDocumento()."'"
+                . ",`numDocumento`='".$egre->getNDocumento()."'"
+                . ",`idPrograma`=".$egre->getCodPrograma().""
+                . ",`telefono`='".$egre->getTelefono()."'"
+                . ",`celular`='".$egre->getCelular()."'"
+                . ",`dirResidencia`='".$egre->getDirResidencia()."'"
+                . ",`depResidencia`='".$egre->getDepResidencia()."'"
+                . ",`ciudResidencia`='".$egre->getCiuResidencia()."'"
+                . ",`paisResidencia`='".$egre->getPaisResidencia()."'"
+                . ",`barrioResidencia`='".$egre->getBarriResidencia()."'"
+                . " WHERE `idEgresado`=".$egre->getCodEgresado().";";
+        $result = $this->bd->ejecutarConsultaSQL($consulta);
+        return $result;
+    }
+    
+    public function LoginGraduado(EgresadoDTO $egre){
+        $this->bd->conection();
+        $consulta = "SELECT `apellido`, `nombre`FROM `egresado` WHERE  `numDocumento` ='".$egre->getNDocumento()."' and `contrasena`='".$egre->getContrasena()."';";
         $result = $this->bd->ejecutarConsultaSQL($consulta);
         return $result;
     }
